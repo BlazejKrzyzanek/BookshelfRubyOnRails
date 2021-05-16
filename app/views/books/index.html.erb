@@ -1,0 +1,12 @@
+<h1>Books</h1>
+
+<% for book in @books do %>
+  <h2><%= link_to book.title, book_path(book) %></h2>
+  <p><%= book.thoughts %></p>
+<% end %>
+
+<%= will_paginate @books %>
+
+<p>
+  Admin actions: <%= link_to 'New Book', new_book_path %>
+</p>
