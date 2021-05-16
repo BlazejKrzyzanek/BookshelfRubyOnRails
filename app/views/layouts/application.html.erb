@@ -21,7 +21,7 @@
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <%= link_to "Books", "#", class: "navbar-brand" %>
+        <%= link_to "Books", "/", class: "navbar-brand" %>
       </div>
     </div>
   </nav>
@@ -34,6 +34,11 @@
     <% end %>
 
     <%= yield %>
+    <% if current_admin %>
+      <p><%= link_to 'Logout', admin_session_path(current_admin_session), method: :delete %></p>
+    <% else %>
+      <p><%= link_to 'Login', new_admin_session_path %></p>
+    <% end %>
   </div>
 </body>
 </html>

@@ -2,11 +2,13 @@
 
 <% for book in @books do %>
   <h2><%= link_to book.title, book_path(book) %></h2>
-  <p><%= book.thoughts %></p>
-<% end %>
+  <%= simple_format(truncate(book.thoughts, lenght: 100)) %>
+  <% end %>
 
 <%= will_paginate @books %>
 
-<p>
-  Admin actions: <%= link_to 'New Book', new_book_path %>
-</p>
+<% if current_admin %>
+  <p>
+    Admin actions: <%= link_to 'New Book', new_book_path %>
+  </p>
+<% end %>

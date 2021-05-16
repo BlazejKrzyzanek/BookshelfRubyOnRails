@@ -1,13 +1,13 @@
 <h1><%= @book.title %></h1>
 
-<p><%= @book.thoughts %></p>
+<%= simple_format @book.thoughts %>
 
 <% if @comments %>
   <h3>Comments</h3>
 
   <% for comment in @comments do %>
-    <p><strong><%= comment.author %></strong>: <%= comment.text %>
-  <% end %>
+    <p><strong><%= comment.author %></strong>:</p>
+    <%= simple_format comment.text %>  <% end %>
 
   <%= will_paginate @comments %>
 <% end %>
@@ -29,9 +29,11 @@
     </div>
   <% end %>
 
+  <% if current_admin %>
   <p>
     Admin Actions:
     <%= link_to 'Edit', edit_book_path(@book) %> |
-    <%= link_to 'Delete', book_path(@book), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: "Are you sure?"} %>
   </p>
+  <% end %>
 </div>

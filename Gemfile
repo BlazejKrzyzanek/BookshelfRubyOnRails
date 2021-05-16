@@ -64,3 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'forgery'
 gem 'will_paginate'
 gem 'bootstrap-generators'
+gem "scrypt", "~> 3.0"
+gem 'authlogic'

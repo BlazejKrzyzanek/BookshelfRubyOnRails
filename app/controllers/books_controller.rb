@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-    # notice we've defined a method called index for a BooksController instance. We tie this together with routes
+  before_action :login_required, except: [:index, :show]
+
   def index
     @books = Book.paginate(page: params[:page], per_page: 10)
   end
@@ -42,6 +43,13 @@ class BooksController < ApplicationController
     book.destroy
     flash[:notice] = "#{book.title} deleted."
     redirect_to books_path
+  end
+
+  def login_required
+    unless current_admin
+      flash[:error] = 'Only logged in admins an access this page.'
+      redirect_to books_path
+    end
   end
 
   private

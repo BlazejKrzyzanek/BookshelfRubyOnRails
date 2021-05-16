@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_121525) do
+ActiveRecord::Schema.define(version: 2021_05_16_130807) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "login"
+    t.string "crypted_password", null: false
+    t.string "password_salt", null: false
+    t.string "persistence_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
